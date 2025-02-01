@@ -1,3 +1,4 @@
+import { getReceiverSocketId, io } from "../lib/socket.js";
 import Message from "../models/message.model.js";
 import User from "../models/user.model.js";
 
@@ -45,6 +46,10 @@ const sendMessage = async (req,res)=>{
         receiver:id
     });
     await message.save();
+    const recieverSocketId = getReceiverSocketId(id)
+    if(recieverSocketId){
+        io.to(recieverSocketId).emit('newMessage',message)
+    }
     return res.status(201).json(message)
    } catch (error) {
     return res.status(500).json({ msg: 'Internal server error' });

@@ -4,14 +4,18 @@ import React from "react";
 
 export function ContactItem({ contact }) {
   const { setCurrentContactId, currentContactId } = useMessageStore();
-  const { logout, onlineUsers } = useAuthStore();
+  const { onlineUsers } = useAuthStore();
   let online ;
-  if (onlineUsers.includes(currentContactId)) {
-    online = true;
-  } else {
-    online = false;
+  for (let i = 0; i < onlineUsers.length; i++) {
+    if (onlineUsers[i] === contact._id) {
+      online = true;
+      break;
+    } else {
+      online = false;
+    }
   }
   const currentContact = currentContactId === contact._id;
+  console.log(online );
 
   const handleClick = () => {
     setCurrentContactId(contact._id);
@@ -28,9 +32,9 @@ export function ContactItem({ contact }) {
       <div className="flex items-center gap-3 w-full">
         <div className="avatar">
           <div className="w-12 h-12 rounded-full">
-            <img src={contact.profilePic} alt={contact.name} />
             {online && (
-              <div className="absolute w-3 h-3 bg-success-500 rounded-full bottom-0 right-0"></div>)}
+              <div className="absolute w-3 h-3 right-1  opacity-80 bg-green-500 rounded-full "></div>)}
+            <img src={contact.profilePic || "https://images.unsplash.com/photo-1606663889134-b1dedb5ed8b7?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt={contact.name} />
           </div>
         </div>
         <div className="flex-1 text-left">

@@ -22,7 +22,7 @@ const userSchema = new Schema({
   },
   profilePic : {
     type: String,
-    default: "https://res.cloudinary.com/djxkexzvz/image/upload/v1631485353/default-profile-pic.jpg"
+    default: "https://images.unsplash.com/photo-1606663889134-b1dedb5ed8b7?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
 },{timestamps : true});
 

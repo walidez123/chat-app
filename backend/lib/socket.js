@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = e()
 const server = http.createServer(app)
-
 const io = new Server(server, {
     cors: {
         origin: process.env.CLIENT_URL,
@@ -14,6 +13,10 @@ const io = new Server(server, {
 })
 
 const onlineUsers = {}
+
+function getReceiverSocketId(userId) {
+    return onlineUsers[userId];
+  }
 
 io.on('connection', (socket) => {
 
@@ -31,4 +34,4 @@ io.on('connection', (socket) => {
 
     })
 })
-export{io,app, server}
+export{io,app, server ,getReceiverSocketId}

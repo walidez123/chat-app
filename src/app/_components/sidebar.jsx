@@ -6,7 +6,7 @@ import { ContactItem } from "./contact";
 import { useMessageStore } from "@/store/useMessageStore";
 import Link from "next/link";
 export function Sidebar({ isOpen }) {
-  const {  logout,onlineUsers } = useAuthStore();
+  const {  logout  } = useAuthStore();
   const {  contacts  } = useMessageStore();
 
   const handleLogout = async () => {
